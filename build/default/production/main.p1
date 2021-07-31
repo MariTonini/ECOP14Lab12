@@ -1,0 +1,82 @@
+Version 4.0 HI-TECH Software Intermediate Code
+[p mainexit ]
+"16 ./lcd.h
+[; ;./lcd.h: 16: void lcd_init(void);
+[v _lcd_init `(v ~T0 @X0 0 ef ]
+"27 ./adc.h
+[; ;./adc.h: 27: void adc_init(void);
+[v _adc_init `(v ~T0 @X0 0 ef ]
+"5 ./temperatura.h
+[; ;./temperatura.h: 5:     void ConfiguraLimiteSuperior(char temp);
+[v _ConfiguraLimiteSuperior `(v ~T0 @X0 0 ef1`uc ]
+"6
+[; ;./temperatura.h: 6:     void ConfiguraLimiteInferior(char temp);
+[v _ConfiguraLimiteInferior `(v ~T0 @X0 0 ef1`uc ]
+"7
+[; ;./temperatura.h: 7:     void AtualizarSistema(void);
+[v _AtualizarSistema `(v ~T0 @X0 0 ef ]
+"38 ./config.h
+[p x OSC=HS ]
+"39
+[p x WDT=OFF ]
+"40
+[p x LVP=OFF ]
+"41
+[p x DEBUG = OFF ]
+"42
+[p x WDTPS = 1 ]
+[v $root$_main `(v ~T0 @X0 0 e ]
+"15 main.c
+[; ;main.c: 15: void main(void) {
+[v _main `(v ~T0 @X0 1 ef ]
+{
+[e :U _main ]
+[f ]
+"16
+[; ;main.c: 16:     (*(volatile __near unsigned char*)0xFC1) = 0x06;
+[e = *U -> -> 4033 `i `*VNuc -> -> 6 `i `uc ]
+"17
+[; ;main.c: 17:     (*(volatile __near unsigned char*)0xF93) = 0x01;
+[e = *U -> -> 3987 `i `*VNuc -> -> 1 `i `uc ]
+"18
+[; ;main.c: 18:     (*(volatile __near unsigned char*)0xF94) = 0x00;
+[e = *U -> -> 3988 `i `*VNuc -> -> 0 `i `uc ]
+"19
+[; ;main.c: 19:     (*(volatile __near unsigned char*)0xF95) = 0x00;
+[e = *U -> -> 3989 `i `*VNuc -> -> 0 `i `uc ]
+"20
+[; ;main.c: 20:     (*(volatile __near unsigned char*)0xF96) = 0x00;
+[e = *U -> -> 3990 `i `*VNuc -> -> 0 `i `uc ]
+"21
+[; ;main.c: 21:     (*(volatile __near unsigned char*)0xF93) = 0xF8;
+[e = *U -> -> 3987 `i `*VNuc -> -> 248 `i `uc ]
+"23
+[; ;main.c: 23:     lcd_init();
+[e ( _lcd_init ..  ]
+"24
+[; ;main.c: 24:     adc_init();
+[e ( _adc_init ..  ]
+"26
+[; ;main.c: 26:     ConfiguraLimiteSuperior(27);
+[e ( _ConfiguraLimiteSuperior (1 -> -> 27 `i `uc ]
+"27
+[; ;main.c: 27:     ConfiguraLimiteInferior(25);
+[e ( _ConfiguraLimiteInferior (1 -> -> 25 `i `uc ]
+"28
+[; ;main.c: 28:     for (;;) {
+{
+[e :U 2 ]
+{
+"29
+[; ;main.c: 29:         AtualizarSistema();
+[e ( _AtualizarSistema ..  ]
+"30
+[; ;main.c: 30:     }
+}
+[e $U 2  ]
+[e :U 3 ]
+}
+"31
+[; ;main.c: 31: }
+[e :UE 1 ]
+}

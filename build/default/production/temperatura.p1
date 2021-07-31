@@ -1,0 +1,224 @@
+Version 4.0 HI-TECH Software Intermediate Code
+"29 ./adc.h
+[; ;./adc.h: 29: unsigned int adc_amostra(unsigned char canal);
+[v _adc_amostra `(ui ~T0 @X0 0 ef1`uc ]
+"17 ./lcd.h
+[; ;./lcd.h: 17: void lcd_cmd(unsigned char val);
+[v _lcd_cmd `(v ~T0 @X0 0 ef1`uc ]
+"11 ./itoa.h
+[; ;./itoa.h: 11: void itoa(unsigned int val, char* str );
+[v _itoa `(v ~T0 @X0 0 ef2`ui`*uc ]
+"18 ./lcd.h
+[; ;./lcd.h: 18: void lcd_dat(unsigned char val);
+[v _lcd_dat `(v ~T0 @X0 0 ef1`uc ]
+"26 ./pwm.h
+[; ;./pwm.h: 26:  void pwmInit(void);
+[v _pwmInit `(v ~T0 @X0 0 ef ]
+"23
+[; ;./pwm.h: 23:  void pwmSet1(unsigned char porcento);
+[v _pwmSet1 `(v ~T0 @X0 0 ef1`uc ]
+"38 ./config.h
+[p x OSC=HS ]
+"39
+[p x WDT=OFF ]
+"40
+[p x LVP=OFF ]
+"41
+[p x DEBUG = OFF ]
+"42
+[p x WDTPS = 1 ]
+"9 temperatura.c
+[; ;temperatura.c: 9: unsigned char superior, inferior, pot;
+[v _superior `uc ~T0 @X0 1 e ]
+[v _inferior `uc ~T0 @X0 1 e ]
+[v _pot `uc ~T0 @X0 1 e ]
+"10
+[; ;temperatura.c: 10: unsigned char tmp;
+[v _tmp `uc ~T0 @X0 1 e ]
+"11
+[; ;temperatura.c: 11: char str[6];
+[v _str `uc ~T0 @X0 -> 6 `i e ]
+"13
+[; ;temperatura.c: 13: void atualizaLCD(void) {
+[v _atualizaLCD `(v ~T0 @X0 1 ef ]
+{
+[e :U _atualizaLCD ]
+[f ]
+"14
+[; ;temperatura.c: 14:     tmp = (adc_amostra(0)*10) / 204;
+[e = _tmp -> / * ( _adc_amostra (1 -> -> 0 `i `uc -> -> 10 `i `ui -> -> 204 `i `ui `uc ]
+"15
+[; ;temperatura.c: 15:     lcd_cmd(0x80);
+[e ( _lcd_cmd (1 -> -> 128 `i `uc ]
+"16
+[; ;temperatura.c: 16:     itoa(tmp,str);
+[e ( _itoa (2 , -> _tmp `ui &U _str ]
+"17
+[; ;temperatura.c: 17:     lcd_dat('T');
+[e ( _lcd_dat (1 -> -> 84 `ui `uc ]
+"18
+[; ;temperatura.c: 18:     lcd_dat(str[1]);
+[e ( _lcd_dat (1 -> *U + &U _str * -> -> -> 1 `i `ui `ux -> -> # *U &U _str `ui `ux `uc ]
+"19
+[; ;temperatura.c: 19:     lcd_dat(str[2]);
+[e ( _lcd_dat (1 -> *U + &U _str * -> -> -> 2 `i `ui `ux -> -> # *U &U _str `ui `ux `uc ]
+"20
+[; ;temperatura.c: 20:     lcd_dat(str[3]);
+[e ( _lcd_dat (1 -> *U + &U _str * -> -> -> 3 `i `ui `ux -> -> # *U &U _str `ui `ux `uc ]
+"21
+[; ;temperatura.c: 21:     lcd_dat(str[4]);
+[e ( _lcd_dat (1 -> *U + &U _str * -> -> -> 4 `i `ui `ux -> -> # *U &U _str `ui `ux `uc ]
+"23
+[; ;temperatura.c: 23:     itoa(superior,str);
+[e ( _itoa (2 , -> _superior `ui &U _str ]
+"24
+[; ;temperatura.c: 24:     lcd_dat('H');
+[e ( _lcd_dat (1 -> -> 72 `ui `uc ]
+"25
+[; ;temperatura.c: 25:     lcd_dat(str[1]);
+[e ( _lcd_dat (1 -> *U + &U _str * -> -> -> 1 `i `ui `ux -> -> # *U &U _str `ui `ux `uc ]
+"26
+[; ;temperatura.c: 26:     lcd_dat(str[2]);
+[e ( _lcd_dat (1 -> *U + &U _str * -> -> -> 2 `i `ui `ux -> -> # *U &U _str `ui `ux `uc ]
+"27
+[; ;temperatura.c: 27:     lcd_dat(str[3]);
+[e ( _lcd_dat (1 -> *U + &U _str * -> -> -> 3 `i `ui `ux -> -> # *U &U _str `ui `ux `uc ]
+"28
+[; ;temperatura.c: 28:     lcd_dat(str[4]);
+[e ( _lcd_dat (1 -> *U + &U _str * -> -> -> 4 `i `ui `ux -> -> # *U &U _str `ui `ux `uc ]
+"30
+[; ;temperatura.c: 30:     itoa(inferior,str);
+[e ( _itoa (2 , -> _inferior `ui &U _str ]
+"31
+[; ;temperatura.c: 31:     lcd_dat('L');
+[e ( _lcd_dat (1 -> -> 76 `ui `uc ]
+"32
+[; ;temperatura.c: 32:     lcd_dat(str[1]);
+[e ( _lcd_dat (1 -> *U + &U _str * -> -> -> 1 `i `ui `ux -> -> # *U &U _str `ui `ux `uc ]
+"33
+[; ;temperatura.c: 33:     lcd_dat(str[2]);
+[e ( _lcd_dat (1 -> *U + &U _str * -> -> -> 2 `i `ui `ux -> -> # *U &U _str `ui `ux `uc ]
+"34
+[; ;temperatura.c: 34:     lcd_dat(str[3]);
+[e ( _lcd_dat (1 -> *U + &U _str * -> -> -> 3 `i `ui `ux -> -> # *U &U _str `ui `ux `uc ]
+"35
+[; ;temperatura.c: 35:     lcd_dat(str[4]);
+[e ( _lcd_dat (1 -> *U + &U _str * -> -> -> 4 `i `ui `ux -> -> # *U &U _str `ui `ux `uc ]
+"37
+[; ;temperatura.c: 37:     lcd_cmd(0xC0);
+[e ( _lcd_cmd (1 -> -> 192 `i `uc ]
+"38
+[; ;temperatura.c: 38:     itoa(pot,str);
+[e ( _itoa (2 , -> _pot `ui &U _str ]
+"39
+[; ;temperatura.c: 39:     lcd_dat('C');
+[e ( _lcd_dat (1 -> -> 67 `ui `uc ]
+"40
+[; ;temperatura.c: 40:     lcd_dat(str[1]);
+[e ( _lcd_dat (1 -> *U + &U _str * -> -> -> 1 `i `ui `ux -> -> # *U &U _str `ui `ux `uc ]
+"41
+[; ;temperatura.c: 41:     lcd_dat(str[2]);
+[e ( _lcd_dat (1 -> *U + &U _str * -> -> -> 2 `i `ui `ux -> -> # *U &U _str `ui `ux `uc ]
+"42
+[; ;temperatura.c: 42:     lcd_dat(str[3]);
+[e ( _lcd_dat (1 -> *U + &U _str * -> -> -> 3 `i `ui `ux -> -> # *U &U _str `ui `ux `uc ]
+"43
+[; ;temperatura.c: 43:     lcd_dat(str[4]);
+[e ( _lcd_dat (1 -> *U + &U _str * -> -> -> 4 `i `ui `ux -> -> # *U &U _str `ui `ux `uc ]
+"44
+[; ;temperatura.c: 44: }
+[e :UE 1 ]
+}
+"46
+[; ;temperatura.c: 46: void ConfiguraLimiteSuperior(char temp) {
+[v _ConfiguraLimiteSuperior `(v ~T0 @X0 1 ef1`uc ]
+{
+[e :U _ConfiguraLimiteSuperior ]
+[v _temp `uc ~T0 @X0 1 r1 ]
+[f ]
+"47
+[; ;temperatura.c: 47:     superior = temp;
+[e = _superior -> _temp `uc ]
+"48
+[; ;temperatura.c: 48:     atualizaLCD();
+[e ( _atualizaLCD ..  ]
+"49
+[; ;temperatura.c: 49: }
+[e :UE 2 ]
+}
+"51
+[; ;temperatura.c: 51: void ConfiguraLimiteInferior(char temp) {
+[v _ConfiguraLimiteInferior `(v ~T0 @X0 1 ef1`uc ]
+{
+[e :U _ConfiguraLimiteInferior ]
+[v _temp `uc ~T0 @X0 1 r1 ]
+[f ]
+"52
+[; ;temperatura.c: 52:     inferior = temp;
+[e = _inferior -> _temp `uc ]
+"53
+[; ;temperatura.c: 53:     atualizaLCD();
+[e ( _atualizaLCD ..  ]
+"54
+[; ;temperatura.c: 54: }
+[e :UE 3 ]
+}
+"56
+[; ;temperatura.c: 56: void AtualizarSistema(void) {
+[v _AtualizarSistema `(v ~T0 @X0 1 ef ]
+{
+[e :U _AtualizarSistema ]
+[f ]
+"57
+[; ;temperatura.c: 57:     pwmInit();
+[e ( _pwmInit ..  ]
+"58
+[; ;temperatura.c: 58:     tmp = (adc_amostra(0)*10) / 204;
+[e = _tmp -> / * ( _adc_amostra (1 -> -> 0 `i `uc -> -> 10 `i `ui -> -> 204 `i `ui `uc ]
+"59
+[; ;temperatura.c: 59:     if(tmp > superior) {
+[e $ ! > -> _tmp `i -> _superior `i 5  ]
+{
+"60
+[; ;temperatura.c: 60:         pot = 100;
+[e = _pot -> -> 100 `i `uc ]
+"61
+[; ;temperatura.c: 61:         pwmSet1(99);
+[e ( _pwmSet1 (1 -> -> 99 `i `uc ]
+"62
+[; ;temperatura.c: 62:     } else if(tmp < inferior) {
+}
+[e $U 6  ]
+[e :U 5 ]
+[e $ ! < -> _tmp `i -> _inferior `i 7  ]
+{
+"63
+[; ;temperatura.c: 63:         pot = 0;
+[e = _pot -> -> 0 `i `uc ]
+"64
+[; ;temperatura.c: 64:         pwmSet1(0);
+[e ( _pwmSet1 (1 -> -> 0 `i `uc ]
+"65
+[; ;temperatura.c: 65:     }else{
+}
+[e $U 8  ]
+[e :U 7 ]
+{
+"66
+[; ;temperatura.c: 66:         pot = 50;
+[e = _pot -> -> 50 `i `uc ]
+"67
+[; ;temperatura.c: 67:         pwmSet1(50);
+[e ( _pwmSet1 (1 -> -> 50 `i `uc ]
+"68
+[; ;temperatura.c: 68:     }
+}
+[e :U 8 ]
+[e :U 6 ]
+"69
+[; ;temperatura.c: 69:     atualizaLCD();
+[e ( _atualizaLCD ..  ]
+"70
+[; ;temperatura.c: 70: }
+[e :UE 4 ]
+}
